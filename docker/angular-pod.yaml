@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: angular-pod
+spec:
+  containers:
+    - name: angular-container-1
+      image: sebastianalexandru/angular:latest
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-1-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: angular-pod
+  ports:
+    - name: angular
+      port: 80
+      targetPort: 80
